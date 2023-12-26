@@ -29,7 +29,8 @@ platformBrowserDynamic()
       !IS_ELECTRON
     ) {
       console.log('Registering Service worker');
-      return navigator.serviceWorker.register('ngsw-worker.js');
+      // return navigator.serviceWorker.register('ngsw-worker.js');
+      return;
     } else if ('serviceWorker' in navigator && IS_ELECTRON) {
       navigator.serviceWorker
         .getRegistrations()

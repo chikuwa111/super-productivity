@@ -32,7 +32,7 @@ import { MyHammerConfig } from '../hammer-config.class';
 import { ProcrastinationModule } from './features/procrastination/procrastination.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { IS_ELECTRON, LanguageCode } from './app.constants';
+import { /*IS_ELECTRON,*/ LanguageCode } from './app.constants';
 import { LanguageService } from './core/language/language.service';
 import { ConfigModule } from './features/config/config.module';
 import { ProjectModule } from './features/project/project.module';
@@ -126,7 +126,8 @@ export const createTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
       validationMessages: [{ name: 'pattern', message: 'Invalid input' }],
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !IS_ELECTRON && (environment.production || environment.stage),
+      // enabled: !IS_ELECTRON && (environment.production || environment.stage),
+      enabled: false,
     }),
     TranslateModule.forRoot({
       loader: {
