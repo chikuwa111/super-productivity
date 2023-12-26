@@ -96,6 +96,7 @@ export class WebDavApiService {
       });
 
       return await client.putFileContents(path, JSON.stringify(data), {
+        headers: { 'ngsw-bypass': true },
         contentLength: false,
       });
     }
@@ -120,7 +121,10 @@ export class WebDavApiService {
         username: cfg.userName,
         password: cfg.password,
       });
-      const r = await client.customRequest(path, { method: 'HEAD' });
+      const r = await client.customRequest(path, {
+        method: 'HEAD',
+        headers: { 'ngsw-bypass': true },
+      });
       return r.headers;
     }
   }
@@ -150,7 +154,10 @@ export class WebDavApiService {
         username: cfg.userName,
         password: cfg.password,
       });
-      const r = await client.getFileContents(path, { format: 'text' });
+      const r = await client.getFileContents(path, {
+        format: 'text',
+        headers: { 'ngsw-bypass': true },
+      });
       return r as any;
     }
   }

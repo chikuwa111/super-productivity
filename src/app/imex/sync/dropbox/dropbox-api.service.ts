@@ -52,6 +52,7 @@ export class DropboxApiService {
       method: 'POST',
       url: 'https://api.dropboxapi.com/2/files/get_metadata',
       data: { path },
+      headers: { 'ngsw-bypass': true },
     }).then((res) => res.data);
   }
 
@@ -77,7 +78,7 @@ export class DropboxApiService {
         // circumvent:
         // https://github.com/angular/angular/issues/37133
         // https://github.com/johannesjo/super-productivity/issues/645
-        // 'ngsw-bypass': true
+        'ngsw-bypass': true,
       },
     }).then((res) => {
       const meta = JSON.parse(res.headers['dropbox-api-result']);
@@ -121,6 +122,7 @@ export class DropboxApiService {
       headers: {
         'Content-Type': 'application/octet-stream',
         'Dropbox-API-Arg': JSON.stringify(args),
+        'ngsw-bypass': true,
       },
     }).then((res) => res.data);
   }
@@ -131,6 +133,9 @@ export class DropboxApiService {
       accessToken,
       method: 'POST',
       url: 'https://api.dropboxapi.com/2/check/user',
+      headers: {
+        'ngsw-bypass': true,
+      },
     }).then((res) => res.data);
   }
 
@@ -207,6 +212,7 @@ export class DropboxApiService {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          'ngsw-bypass': true,
         },
         data: stringify({
           refresh_token: refreshToken,
@@ -253,6 +259,7 @@ export class DropboxApiService {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          'ngsw-bypass': true,
         },
         data: stringify({
           code: authCode,
